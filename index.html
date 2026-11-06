@@ -9,11 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
 <style>
-  /* Font GTA originale: Pricedown. Se vuoi usarlo, metti il file "pricedown.woff2"
+  /* Font GTA originale: Pricedown. Se vuoi usarlo, metti il file "pricedown.otf" (o .ttf / .woff2)
      accanto a questo index.html (la licenza va verificata). Altrimenti viene usato Bowlby One, molto simile. */
   @font-face {
     font-family: "Pricedown";
-    src: local("Pricedown"), local("Pricedown Bl"), url("pricedown.woff2") format("woff2");
+    src: local("Pricedown"), local("Pricedown Bl"),
+         url("pricedown.woff2") format("woff2"),
+         url("pricedown.otf") format("opentype"),
+         url("pricedown.ttf") format("truetype");
     font-display: swap;
   }
 
