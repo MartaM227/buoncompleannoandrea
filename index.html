@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buon compleanno Andrea</title>
+<meta name="theme-color" content="#2a0a4a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap" rel="stylesheet">
+<style>
+  /* Font GTA originale: Pricedown. Se vuoi usarlo, metti il file "pricedown.woff2"
+     accanto a questo index.html (la licenza va verificata). Altrimenti viene usato Bowlby One, molto simile. */
+  @font-face {
+    font-family: "Pricedown";
+    src: local("Pricedown"), local("Pricedown Bl"), url("pricedown.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  :root {
+    --ink: #1b0838;
+    --pink: #ff2e93;
+    --orange: #ff7a3d;
+    --gold: #ffd35a;
+    --display: "Pricedown", "Bowlby One", "Impact", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    font-family: var(--display);
+    color: #fff;
+    background: var(--ink);
+    overflow: hidden;
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+  }
+
+  /* ---------- Sfondo stile Vice City ---------- */
+  .scene { position: fixed; inset: 0; overflow: hidden; }
+
+  .sky {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg,
+        #1a0638 0%,
+        #4a0f6b 22%,
+        #a3167f 46%,
+        #ff2e93 64%,
+        #ff7a3d 80%,
+        #ffd35a 100%);
+  }
+
+  .stars {
+    position: absolute; inset: 0 0 50% 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 18%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 27% 8%, #fff 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 41% 24%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 58% 12%, #fff 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 73% 20%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 88% 9%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 6% 36%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 93% 33%, #fff 50%, transparent 52%);
+    opacity: .7;
+  }
+
+  .sun {
+    position: absolute;
+    left: 50%;
+    bottom: 22%;
+    width: min(78vw, 62vh);
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 70px rgba(255, 90, 140, .7));
+  }
+  .sun::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #fff3a8 0%, #ffd35a 35%, #ff7a3d 70%, #ff2e93 100%);
+    /* strisce orizzontali sempre più larghe verso il basso */
+    -webkit-mask-image: linear-gradient(180deg,
+      #000 0 55%, transparent 55% 58%,
+      #000 58% 66%, transparent 66% 70%,
+      #000 70% 77%, transparent 77% 82%,
+      #000 82% 88%, transparent 88% 94%,
+      #000 94% 100%);
+            mask-image: linear-gradient(180deg,
+      #000 0 55%, transparent 55% 58%,
+      #000 58% 66%, transparent 66% 70%,
+      #000 70% 77%, transparent 77% 82%,
+      #000 82% 88%, transparent 88% 94%,
+      #000 94% 100%);
+  }
+
+  .city {
+    position: absolute; left: 0; right: 0; bottom: 14%;
+    width: 100%; height: 22%;
+  }
+  .palm-l, .palm-r {
+    position: absolute; bottom: 0;
+    height: min(78vh, 120vw);
+    width: auto;
+  }
+  .palm-l { left: -6vw; }
+  .palm-r { right: -6vw; transform: scaleX(-1); height: min(64vh, 100vw); }
+
+  .ground {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 14%;
+    background: linear-gradient(180deg, #2a0a4a 0%, var(--ink) 100%);
+  }
+
+  /* ---------- Contenuto ---------- */
+  main {
+    position: relative; z-index: 2;
+    min-height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: clamp(1.5rem, 5vh, 3.5rem);
+    padding: 1.5rem 1rem 14vh;
+    text-align: center;
+  }
+
+  /* Titolo: riempimento sfumato rosa/arancio + contorno scuro come nel logo di GTA */
+  .title {
+    position: relative;
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 11.5vw, 9rem);
+    line-height: 1;
+    letter-spacing: .01em;
+    max-width: 100%;
+  }
+  .title::before {
+    content: attr(data-text);
+    position: absolute; inset: 0;
+    z-index: -1;
+    color: var(--ink);
+    -webkit-text-stroke: .2em var(--ink);
+    text-shadow: .06em .07em 0 var(--ink);
+  }
+  .title span {
+    background: linear-gradient(180deg, var(--gold) 5%, var(--orange) 45%, var(--pink) 95%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+  }
+
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: clamp(.6rem, 3.5vw, 3rem);
+    margin: 0; padding: 0;
+  }
+  .unit { display: flex; flex-direction: column; align-items: center; }
+
+  .num {
+    font-size: clamp(2.2rem, 10vw, 6.5rem);
+    line-height: 1;
+    min-width: 2ch;
+    color: #fff;
+    -webkit-text-stroke: .16em var(--ink);
+    paint-order: stroke fill;
+    text-shadow: .05em .06em 0 var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .label {
+    margin-top: .5rem;
+    font-size: clamp(.7rem, 2.4vw, 1.25rem);
+    color: var(--gold);
+    -webkit-text-stroke: .22em var(--ink);
+    paint-order: stroke fill;
+    text-shadow: .08em .09em 0 var(--ink);
+    letter-spacing: .04em;
+  }
+
+  .done .countdown { display: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .sun { animation: glow 6s ease-in-out infinite alternate; }
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 50px rgba(255, 90, 140, .5)); }
+      to   { filter: drop-shadow(0 0 90px rgba(255, 120, 90, .8)); }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .palm-l { left: -22vw; }
+    .palm-r { right: -24vw; }
+    .sun { width: 92vw; bottom: 24%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scene" aria-hidden="true">
+  <div class="sky"></div>
+  <div class="stars"></div>
+  <div class="sun"></div>
+
+  <!-- Skyline -->
+  <svg class="city" viewBox="0 0 1200 200" preserveAspectRatio="none">
+    <g fill="#2a0a4a">
+      <rect x="0" y="120" width="40" height="80"/><rect x="40" y="80" width="30" height="120"/>
+      <rect x="70" y="130" width="50" height="70"/><rect x="120" y="60" width="28" height="140"/>
+      <rect x="148" y="105" width="44" height="95"/><rect x="192" y="140" width="40" height="60"/>
+      <rect x="232" y="90" width="34" height="110"/><rect x="266" y="125" width="52" height="75"/>
+      <rect x="318" y="40" width="26" height="160"/><rect x="344" y="100" width="40" height="100"/>
+      <rect x="384" y="135" width="50" height="65"/><rect x="434" y="75" width="32" height="125"/>
+      <rect x="466" y="120" width="46" height="80"/><rect x="512" y="95" width="30" height="105"/>
+      <rect x="542" y="140" width="56" height="60"/><rect x="598" y="55" width="30" height="145"/>
+      <rect x="628" y="110" width="44" height="90"/><rect x="672" y="135" width="40" height="65"/>
+      <rect x="712" y="85" width="34" height="115"/><rect x="746" y="125" width="52" height="75"/>
+      <rect x="798" y="50" width="28" height="150"/><rect x="826" y="105" width="42" height="95"/>
+      <rect x="868" y="140" width="46" height="60"/><rect x="914" y="80" width="32" height="120"/>
+      <rect x="946" y="120" width="50" height="80"/><rect x="996" y="65" width="28" height="135"/>
+      <rect x="1024" y="110" width="44" height="90"/><rect x="1068" y="135" width="48" height="65"/>
+      <rect x="1116" y="90" width="34" height="110"/><rect x="1150" y="125" width="50" height="75"/>
+    </g>
+  </svg>
+
+  <!-- Palma (riusata a sinistra e a destra) -->
+  <svg class="palm-l" viewBox="0 0 300 600" preserveAspectRatio="xMinYMax meet">
+    <g fill="#1b0838">
+      <path d="M160 600 C170 480 180 340 172 222 L180 222 C190 340 188 480 190 600 Z"/>
+      <path d="M170 220 C120 150 50 160 10 220 C60 185 120 190 170 235Z"/>
+      <path d="M170 220 C130 130 80 100 30 110 C90 125 130 160 170 232Z"/>
+      <path d="M170 220 C150 120 140 70 110 40 C150 80 160 140 176 225Z"/>
+      <path d="M170 220 C200 110 230 70 270 60 C225 95 205 150 178 228Z"/>
+      <path d="M170 220 C220 150 270 140 295 150 C250 160 210 185 175 232Z"/>
+      <path d="M170 222 C230 190 280 220 295 280 C265 235 220 225 172 236Z"/>
+      <path d="M168 222 C110 200 60 250 45 310 C75 255 120 235 168 236Z"/>
+    </g>
+  </svg>
+  <svg class="palm-r" viewBox="0 0 300 600" preserveAspectRatio="xMinYMax meet">
+    <g fill="#1b0838">
+      <path d="M160 600 C170 480 180 340 172 222 L180 222 C190 340 188 480 190 600 Z"/>
+      <path d="M170 220 C120 150 50 160 10 220 C60 185 120 190 170 235Z"/>
+      <path d="M170 220 C130 130 80 100 30 110 C90 125 130 160 170 232Z"/>
+      <path d="M170 220 C150 120 140 70 110 40 C150 80 160 140 176 225Z"/>
+      <path d="M170 220 C200 110 230 70 270 60 C225 95 205 150 178 228Z"/>
+      <path d="M170 220 C220 150 270 140 295 150 C250 160 210 185 175 232Z"/>
+      <path d="M170 222 C230 190 280 220 295 280 C265 235 220 225 172 236Z"/>
+      <path d="M168 222 C110 200 60 250 45 310 C75 255 120 235 168 236Z"/>
+    </g>
+  </svg>
+
+  <div class="ground"></div>
+</div>
+
+<main id="stage">
+  <h1 class="title" id="title" data-text="Sto arrivando"><span>Sto arrivando</span></h1>
+
+  <div class="countdown" id="countdown" role="timer" aria-label="Conto alla rovescia fino al 19 novembre 2026">
+    <div class="unit"><div class="num" id="d">00</div><div class="label">giorni</div></div>
+    <div class="unit"><div class="num" id="h">00</div><div class="label">ore</div></div>
+    <div class="unit"><div class="num" id="m">00</div><div class="label">minuti</div></div>
+    <div class="unit"><div class="num" id="s">00</div><div class="label">secondi</div></div>
+  </div>
+</main>
+
+<script>
+  // 19 novembre 2026, mezzanotte, ora italiana (CET)
+  var target = new Date("2026-11-19T00:00:00+01:00").getTime();
+
+  var els = {
+    d: document.getElementById("d"),
+    h: document.getElementById("h"),
+    m: document.getElementById("m"),
+    s: document.getElementById("s")
+  };
+  var title = document.getElementById("title");
+  var stage = document.getElementById("stage");
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+
+  function tick() {
+    var diff = target - Date.now();
+
+    if (diff <= 0) {
+      var text = "Buon compleanno Andrea!";
+      title.setAttribute("data-text", text);
+      title.firstElementChild.textContent = text;
+      stage.classList.add("done");
+      clearInterval(timer);
+      return;
+    }
+
+    var total = Math.floor(diff / 1000);
+    els.d.textContent = pad(Math.floor(total / 86400));
+    els.h.textContent = pad(Math.floor(total % 86400 / 3600));
+    els.m.textContent = pad(Math.floor(total % 3600 / 60));
+    els.s.textContent = pad(total % 60);
+  }
+
+  var timer = setInterval(tick, 1000);
+  tick();
+</script>
+</body>
+</html>
